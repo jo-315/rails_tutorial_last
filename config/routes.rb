@@ -62,7 +62,10 @@ Rails.application.routes.draw do
   
   get 'help' => 'static_pages#help'
   get 'about' => 'static_pages#about'
-  get '/signup' => 'user#new'
+  get 'signup' => 'users#new'
+  post 'signup' => 'users#create'
+  
+  resources :users
   
   root 'static_pages#home'
 end
