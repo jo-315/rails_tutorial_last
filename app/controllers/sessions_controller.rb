@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])#Userのdb内のpassword_digestとsubmitされたpasswordの比較
       log_in(user)
       params[:session][:remember_me] == "1" ? create_cookies(user) : user.forget_remember_digest #Userのremember_digestおよびcookiesの作成
-      redirect_to user 
+      redirect_back_or(user)
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
