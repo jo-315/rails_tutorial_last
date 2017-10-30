@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def create 
     @user = User.new(user_params) #params => user => name,email,password...
      if @user.save 
-       log_in(@user) #session に @user　を登録
+       log_in(@user) #session に@userを登録
        flash[:success] = "Complete Sign up"
        redirect_to @user
      else 

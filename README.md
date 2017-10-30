@@ -1,24 +1,34 @@
+〇ログイン&ログアウト
+・ログインする
+log_in => sessionを作成
 
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
-
-
-Welcome to your Rails project on Cloud9 IDE!
-
-To get started, just do the following:
-
-1. Run the project with the "Run Project" button in the menu bar on top of the IDE.
-2. Preview your new app by clicking on the URL that appears in the Run panel below (https://HOSTNAME/).
-
-Happy coding!
-The Cloud9 IDE team
+sessionが作成されると...
+@current_userにsessionのuser_idが入りtrueを返す
+(@curretn_userはcookiesにuser_idが入っていればtrueになる)
 
 
-## Support & Documentation
+・ログインの確認
+logged_in?(ログインしているかの確認)
+@current_userがtrueならログインとみなす
 
-Visit http://docs.c9.io for support, or to learn more about using Cloud9 IDE. 
-To watch some training videos, visit http://www.youtube.com/user/c9ide
+
+・ログアウトする
+log_out => sessionをdestroy, @current_userをnilにする
+           remember_digestとcookiesの破壊
+
+
+〇サインアップ(新しいUser)
+formでsubmitされた値をparamsで受け取り@userに入れて、@userでlog_in(session作成)
+
+
+〇sessionの作成
+log_in時作成
+(def log_in(user)
+　session[:user_id] = user.id #session[]に代入すると勝手に暗号化される
+end)
+※log_inはuser_controllerとsession_controllerのcreateで使用
+
+〇cookiesの作成
+session_helperのcreate_cookies
+Userのcreate_remember_digestが必要(ここでtokenとか使う)
+cookiesはuser_idとremember_tokenの値を持つ
