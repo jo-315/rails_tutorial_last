@@ -42,3 +42,6 @@ cookiesはuser_idとremember_tokenの値を持つ
 logged_in? => ログインしているか(current_userの確認(sessionかcookiesがあるか)
 store_location => 不適切なuserが元居たpageへ戻れるように
 
+〇params
+params[modelオブジェクト][value]
+(modelオブジェクト => form_for の引数)
