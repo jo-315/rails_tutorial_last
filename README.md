@@ -1,6 +1,10 @@
+〇サインアップ
+メール送信 => メールのurlよりAccountActivateのeditへ
+=> activate and log_in(create session) => redirect_to user
+
 〇ログイン&ログアウト
 ・ログインする
-log_in => sessionを作成
+log_in => sessionを作成(if user.activated?)
 
 sessionが作成されると...
 @current_userにsessionのuser_idが入りtrueを返す
