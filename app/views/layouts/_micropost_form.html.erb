@@ -1,0 +1,9 @@
+<%= form_for :microposts do |f| %>
+  <%= render 'layouts/error_messages' %>
+  <div class="field">
+      <%= f.label :content, "content" %>
+      <%= f.text_area :content %>
+      
+      <%= f.submit "tweet" %>
+  </div>
+<% end %>

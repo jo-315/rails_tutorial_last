@@ -15,13 +15,14 @@ class UsersController < ApplicationController
     def show
       @user = User.find_by(id: params[:id])
       @title = @user.name
+      @microposts = @user.microposts.all
     end
     
     #signupを扱う
     def create 
       @user = User.new(user_params) #params => user => name,email,password...
       if @user.save 
-        @user.admin.update_attributes(true)
+        @user.update_attributes(:admin, true)
         log_in(@user) #session に@userを登録
         flash[:success] = "Complete Sign up"
         redirect_to @user
@@ -55,13 +56,6 @@ class UsersController < ApplicationController
         params.require(:user).permit(:name, :email, :password, :password_confirmatio)
       end
       
-      def logged_in_user
-        unless logged_in?
-            store_location
-            flash[:danger] = "Please log in"
-            redirect_to login_path
-        end
-      end
        #正しいuserの確認
        def correct_user
          @user = User.find(params[:id])
